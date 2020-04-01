@@ -1,21 +1,16 @@
 namespace EvilNumbers
 {
     public class EvilThings{
-        static 
-        byte[] positions = {
-            0b00000001,
-            0b00000010,
-            0b00000100,
-            0b00001000,
-            0b00010000,
-            0b00100000,
-            0b01000000,
-            0b10000000
-        };
         public static bool IsEvilNumberStatic (short value) {
             short numberOf1 = 0;
+            byte position = default;
             byte valueByte = (byte)value;
-            foreach(byte position in positions){
+            for (var i=0; i< 8; i++) {
+                if (position == default) {
+                    position = 0b00000001;
+                } else {
+                    position = (byte)(position << 1);
+                }
                 if((position & valueByte) > 0){
                     numberOf1 ++;
                 }
